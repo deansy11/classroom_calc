@@ -38,28 +38,34 @@ end
 # # < 60 => F
 def letter_grade(score)
   if score < 60
-    return "F"
+    "F"
   elsif score >= 60  && score <= 69
-    return "D"
+    "D"
   elsif score >= 70 && score <= 79
-    return "C"
+    "C"
   elsif score >= 80 && score <= 89
-    return "B"
+    "B"
   else
-    return "A"
+    "A"
   end
 end
 
-
 # # Return a hash of students and their final letter grade, as determined
 # # by their average.
-# def final_letter_grades(grade_hash)
-# end
-#
+def final_letter_grades(grade_hash)
+  averages(grade_hash)
+    .transform_values { |score|
+    letter_grade(score)}
+end
+
 # # Return the average for the entire class.
-# def class_average(grade_hash)
-# end
-#
+def class_average(grade_hash)
+  averages(grade_hash)
+    .map { |key, value| value }
+    .reduce(:+) / grade_hash.length
+end
+
 # # Return an array of the top `number_of_students` students.
 # def top_students(grade_hash, number_of_students)
+#
 # end
